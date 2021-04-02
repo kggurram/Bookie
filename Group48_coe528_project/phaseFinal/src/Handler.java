@@ -14,7 +14,7 @@ public class Handler {
     private String password;
     private String dir = "customerFile";
     private int bal;
-    private Customer current;
+    private User current;
     
     //handlers can add or delete a customer
 

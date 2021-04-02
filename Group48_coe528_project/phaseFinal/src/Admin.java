@@ -8,9 +8,6 @@
  *
  * @author kggur
  */
-public class Customer {
-    
-
-   
+public class Admin {
     
 }
