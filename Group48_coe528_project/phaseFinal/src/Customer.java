@@ -9,7 +9,7 @@
  * @author kggur
  */
 public abstract class Customer {
-    
+    //add comment
     abstract public boolean login(String username, String password);
     
     abstract public boolean logout();
