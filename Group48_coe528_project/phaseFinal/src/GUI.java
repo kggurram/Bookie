@@ -31,7 +31,7 @@ public class GUI extends Application {
     public void start(Stage primaryStage){ 
         
         primaryStage.setTitle("Bookstore App");
-        
+        //hello
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
