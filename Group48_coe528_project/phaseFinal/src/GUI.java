@@ -22,7 +22,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.layout.HBox;
 
 /**
- * @author kggur
+ * @author Group 48 - Karthik, Waqas, Manav, Rania
  */
 
 public class GUI extends Application {
