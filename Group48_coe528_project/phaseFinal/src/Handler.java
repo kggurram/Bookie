@@ -7,7 +7,7 @@ import java.io.*;
 public class Handler {
     private String username;
     private String password;
-    private String dir = "customerFile";
+    private String dir = "customers";
     private int bal;
     private User current;
 
