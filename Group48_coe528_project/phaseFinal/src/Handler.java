@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+import java.io.*;
+
+/**
+ * @author Group 48 - Karthik, Waqas, Manav, Rania
  */
 
-import java.io.*;
-/**
- *
- * @author kggur
- */
 public class Handler {
     private String username;
     private String password;

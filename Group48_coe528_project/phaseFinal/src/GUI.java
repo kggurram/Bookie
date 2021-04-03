@@ -31,7 +31,6 @@ public class GUI extends Application {
     public void start(Stage primaryStage){ 
         
         primaryStage.setTitle("Bookstore App");
-        //hello
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
@@ -90,28 +89,29 @@ public class GUI extends Application {
     
     public void managerWindow(Stage primaryStage, Handler a){
 
+        Handler handler = new Handler();
+        
         Button books = new Button("Books");
-        
         Button customers = new Button("Customers");
-        
         Button logout = new Button("Logout");
 
         GridPane managerPane = new GridPane();
         
         managerPane.setAlignment(Pos.CENTER);
+        managerPane.setHgap(10);
+        managerPane.setVgap(10);
+        managerPane.setPadding(new Insets(25, 25, 25, 25));
         
         managerPane.add(books, 0, 2);
-        
         managerPane.add(customers, 0, 3);
-        
         managerPane.add(logout, 0, 4);
         
         books.setOnAction((ActionEvent e)->{
-
+            managerBooks(primaryStage, handler);
         });
         
         customers.setOnAction((ActionEvent e)->{
-            
+            managerCustomers(primaryStage, handler);
         });
        
         logout.setOnAction((ActionEvent e) -> {
@@ -122,6 +122,52 @@ public class GUI extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+    }
+    
+    public void managerBooks(Stage primaryStage, Handler a){
+        
+        Handler handler = new Handler();
+        
+        Button back = new Button("Back");
+        GridPane managerBooksPane = new GridPane();
+        
+        managerBooksPane.setAlignment(Pos.CENTER);
+        managerBooksPane.setHgap(10);
+        managerBooksPane.setVgap(10);
+        managerBooksPane.setPadding(new Insets(25, 25, 25, 25));
+        
+        managerBooksPane.add(back, 0, 2);
+        
+        back.setOnAction((ActionEvent e)->{
+            managerWindow(primaryStage, handler);
+        });
+        
+        Scene scene = new Scene(managerBooksPane, 600, 300);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    
+    public void managerCustomers(Stage primaryStage, Handler a){
+        
+        Handler handler = new Handler();
+        
+        Button back = new Button("Back");
+        GridPane managerCustomersPane = new GridPane();
+        
+        managerCustomersPane.setAlignment(Pos.CENTER);
+        managerCustomersPane.setHgap(10);
+        managerCustomersPane.setVgap(10);
+        managerCustomersPane.setPadding(new Insets(25, 25, 25, 25));
+        
+        managerCustomersPane.add(back, 0, 2);
+        
+        back.setOnAction((ActionEvent e)->{
+            managerWindow(primaryStage, handler);
+        });
+        
+        Scene scene = new Scene(managerCustomersPane, 600, 300);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args){
