@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.event.EventHandler;
@@ -70,29 +65,16 @@ public class GUI extends Application {
                 String username = userbox.getText();
                 String password = pwbox.getText();
                 
-               
                 if (username.equals("admin") && password.equals("admin")){
                     managerWindow(primaryStage, handler);
                     System.out.println("Admin successfully logged in.");
 
-                } 
-                else if (username.equals(username) && password.equals(password))
-                {
-                    customerWindow(primaryStage, handler);
-                    System.out.println(username + " has successfully logged in.");
-                    
+                }else{
+                    System.out.println("Invalid Login.");
+                    System.out.println(UserName.getText());
+                    System.out.println(Password.getText());
+                    grid.add(invalid, 1, 3);
                 }
-
-                else{
-                System.out.println("Invalid Login.");
-                System.out.println(UserName.getText());
-                System.out.println(Password.getText());
-                grid.add(invalid, 1, 3);
-                }
-                
-               
-                
-                
             }
         });
         
@@ -105,6 +87,9 @@ public class GUI extends Application {
 
         Handler handler = new Handler();
         
+
+        Text scenetitle = new Text("Welcome, Administrator");
+        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         Button books = new Button("Books");
         Button customers = new Button("Customers");
         Button logout = new Button("Logout");
@@ -119,6 +104,8 @@ public class GUI extends Application {
         managerPane.add(books, 0, 2);
         managerPane.add(customers, 0, 3);
         managerPane.add(logout, 0, 4);
+        
+        managerPane.add(scenetitle, 0, 0, 2, 1);
         
         books.setOnAction((ActionEvent e)->{
             managerBooks(primaryStage, handler);
@@ -182,46 +169,6 @@ public class GUI extends Application {
         Scene scene = new Scene(managerCustomersPane, 600, 300);
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    public void customerWindow(Stage primaryStage, Handler a)
-    {
-       Button buy = new Button("Buy");
-        Button redeemBuy = new Button("Redeem Points and Buy");
-        Button logoutCustomer = new Button("Logout");
-        
-        GridPane customerPane = new GridPane();
-    //    GridPane customerPane2 = new GridPane();
-    //    GridPane customerPane3 = new GridPane();
-        
-        
-        customerPane.setAlignment(Pos.BOTTOM_CENTER);
-
-        
-        customerPane.add(buy, 0,4);
-        customerPane.add(redeemBuy, 10, 4);
-        customerPane.add(logoutCustomer, 20, 4);
-        
-        buy.setOnAction((ActionEvent e) -> {
-        });
-        redeemBuy.setOnAction((ActionEvent e) -> {
-        });
-        logoutCustomer.setOnAction((ActionEvent e) -> {
-            start(primaryStage);
-        });
-        
-        
-        
-        
-        Scene scene = new Scene(customerPane, 600, 300);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        
-    }
-    
-    public void customerStartScreen(Stage primaryStage, Handler a)
-    {
-        
     }
     
     public static void main(String[] args){

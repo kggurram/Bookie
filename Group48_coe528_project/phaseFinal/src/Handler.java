@@ -10,8 +10,6 @@ public class Handler {
     private String dir = "customerFile";
     private int bal;
     private User current;
-    
-    //handlers can add or delete a customer
 
     public boolean verify(String u, String pw) {
         boolean verification;
