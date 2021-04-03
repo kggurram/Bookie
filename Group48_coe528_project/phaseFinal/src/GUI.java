@@ -1,5 +1,7 @@
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,9 +15,13 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 /**
  * @author Group 48 - Karthik, Waqas, Manav, Rania
@@ -86,7 +92,6 @@ public class GUI extends Application {
     public void managerWindow(Stage primaryStage, Handler a){
 
         Handler handler = new Handler();
-        
 
         Text scenetitle = new Text("Welcome, Administrator");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
@@ -119,7 +124,7 @@ public class GUI extends Application {
             start(primaryStage);
         });
         
-        Scene scene = new Scene(managerPane, 600, 300);
+        Scene scene = new Scene(managerPane, 400, 300);
         primaryStage.setScene(scene);
         primaryStage.show();
 
@@ -129,23 +134,49 @@ public class GUI extends Application {
         
         Handler handler = new Handler();
         
+        //Title Column
+        TableColumn<Product, String> nameColumn = new TableColumn<>("Title");
+        nameColumn.setMinWidth(200);
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("bookName"));
+
+        //Price Column
+        TableColumn<Product, String> priceColumn = new TableColumn<>("Price");
+        priceColumn.setMinWidth(100);
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        //Quantity Column
+        TableColumn<Product, String> quantityColumn = new TableColumn<>("Quantity");
+        quantityColumn.setMinWidth(75);
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
+        //Select Column
+        TableColumn<Product, CheckBox> selectColumn = new TableColumn("Select");
+        selectColumn.setMinWidth(50);
+        selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
+        bookTable = new TableView<>();
+        bookTable.setItems(getProduct());
+        bookTable.getColumns().addAll(nameColumn, priceColumn, quantityColumn, selectColumn );
+
+        Button delete = new Button("Delete");
         Button back = new Button("Back");
-        GridPane managerBooksPane = new GridPane();
-        
-        managerBooksPane.setAlignment(Pos.CENTER);
-        managerBooksPane.setHgap(10);
-        managerBooksPane.setVgap(10);
-        managerBooksPane.setPadding(new Insets(25, 25, 25, 25));
-        
-        managerBooksPane.add(back, 0, 2);
-        
+
         back.setOnAction((ActionEvent e)->{
             managerWindow(primaryStage, handler);
         });
         
-        Scene scene = new Scene(managerBooksPane, 600, 300);
+        delete.setOnAction((ActionEvent e)->{
+            //Delete book
+        });
+
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(bookTable, delete, back);
+        vBox.setPadding(new Insets(35, 35, 35, 35));
+        vBox.setSpacing(10);
+
+        Scene scene = new Scene(vBox);
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
     
     public void managerCustomers(Stage primaryStage, Handler a){
@@ -170,6 +201,16 @@ public class GUI extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+    public ObservableList<Product> getProduct (){
+        ObservableList<Product> product = FXCollections.observableArrayList();
+        product.add(new Product("Harry Potter", 21.99, 3));
+        product.add(new Product ("Obama", 24.99, 50));
+        product.add(new Product("Baby Shark", 9.49, 1 ));
+        return product;
+    }
+
+    TableView<Product> bookTable;
     
     public static void main(String[] args){
         launch(args);
