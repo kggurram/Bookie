@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.control.PasswordField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
 /**
@@ -31,7 +32,6 @@ public class GUI extends Application {
     public void start(Stage primaryStage){ 
         
         primaryStage.setTitle("Bookstore App");
-        //hello
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
@@ -69,17 +69,30 @@ public class GUI extends Application {
                 
                 String username = userbox.getText();
                 String password = pwbox.getText();
-
+                
+               
                 if (username.equals("admin") && password.equals("admin")){
                     managerWindow(primaryStage, handler);
                     System.out.println("Admin successfully logged in.");
+
+                } 
+                else if (username.equals(username) && password.equals(password))
+                {
+                    customerWindow(primaryStage, handler);
+                    System.out.println(username + " has successfully logged in.");
                     
-                } else{
-                    System.out.println("Invalid Login.");
-                    System.out.println(UserName.getText());
-                    System.out.println(Password.getText());
-                    grid.add(invalid, 1, 3);
                 }
+
+                else{
+                System.out.println("Invalid Login.");
+                System.out.println(UserName.getText());
+                System.out.println(Password.getText());
+                grid.add(invalid, 1, 3);
+                }
+                
+               
+                
+                
             }
         });
         
@@ -124,6 +137,46 @@ public class GUI extends Application {
 
     }
 
+    public void customerWindow(Stage primaryStage, Handler a)
+    {
+       Button buy = new Button("Buy");
+        Button redeemBuy = new Button("Redeem Points and Buy");
+        Button logoutCustomer = new Button("Logout");
+        
+        GridPane customerPane = new GridPane();
+    //    GridPane customerPane2 = new GridPane();
+    //    GridPane customerPane3 = new GridPane();
+        
+        
+        customerPane.setAlignment(Pos.BOTTOM_CENTER);
+
+        
+        customerPane.add(buy, 0,4);
+        customerPane.add(redeemBuy, 10, 4);
+        customerPane.add(logoutCustomer, 20, 4);
+        
+        buy.setOnAction((ActionEvent e) -> {
+        });
+        redeemBuy.setOnAction((ActionEvent e) -> {
+        });
+        logoutCustomer.setOnAction((ActionEvent e) -> {
+            start(primaryStage);
+        });
+        
+        
+        
+        
+        Scene scene = new Scene(customerPane, 600, 300);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        
+    }
+    
+    public void customerStartScreen(Stage primaryStage, Handler a)
+    {
+        
+    }
+    
     public static void main(String[] args){
         launch(args);
     }
