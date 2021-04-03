@@ -1,3 +1,7 @@
+/**
+ * @author Group 48 - Karthik, Waqas, Manav, Rania
+ */
+
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
@@ -22,10 +26,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-/**
- * @author Group 48 - Karthik, Waqas, Manav, Rania
- */
 
 public class GUI extends Application {
     
@@ -74,11 +74,15 @@ public class GUI extends Application {
                 if (username.equals("admin") && password.equals("admin")){
                     managerWindow(primaryStage, handler);
                     System.out.println("Admin successfully logged in.");
-
+                }else if (handler.verify(username, password)){ //will create a verify method in the manager class to check for login credentials
+                    
+                    //customerWindow(primaryStage, handler);
+                    System.out.println("Customer successfully logged in.");
+                    
                 }else{
                     System.out.println("Invalid Login.");
-                    System.out.println(UserName.getText());
-                    System.out.println(Password.getText());
+                    System.out.println(username);
+                    System.out.println(password);
                     grid.add(invalid, 1, 3);
                 }
             }

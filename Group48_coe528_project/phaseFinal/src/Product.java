@@ -1,8 +1,8 @@
-import javafx.scene.control.CheckBox;
-
 /**
  * @author Group 48 - Karthik, Waqas, Manav, Rania
  */
+
+import javafx.scene.control.CheckBox;
 
 public class Product {
 
@@ -21,6 +21,7 @@ public class Product {
     public String getBookName(){
         return bookName;
     }
+    
     public void setBookName (String bookName){
         this.bookName = bookName;
     }
@@ -28,6 +29,7 @@ public class Product {
     public double getPrice(){
         return price;
     }
+    
     public void setPrice (double price){
         this.price = price;
     }
@@ -35,6 +37,7 @@ public class Product {
     public int getQuantity(){
         return quantity;
     }
+    
     public void setQuantity (int quantity){
         this.quantity = quantity;
     }

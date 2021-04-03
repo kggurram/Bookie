@@ -1,30 +1,44 @@
 import java.io.*;
 
 /**
- * @author Group 48 - Karthik, Waqas, Manav, Rania
+ * @author kggur
  */
 
 public class Handler {
     private String username;
     private String password;
     private String dir = "customers";
-    private int bal;
+    private int points;
     private User current;
-
-    public boolean verify(String u, String pw) {
+    public Customer c1;
+    
+    public boolean verify(String user, String pw) {
         boolean verification;
         verification = false;
+               
         try{
-            FileReader readFile = new FileReader(dir + u + ".txt");
-            BufferedReader buffer1 = new BufferedReader(readFile);
+            BufferedReader reader = new BufferedReader(new FileReader("customers.txt"));
             
-            String line = buffer1.readLine();
-            String info[] = line.split(", ");
+            String line = reader.readLine();
+            while (line != null) {
+                //System.out.println(line);
+                String info[] = line.split(", ");
+                username = info[0];
+                password = info[1];
+                points = Integer.parseInt(info[2]);
+                c1 = new Customer(username, password, points);
+                if((user.equals(username)) && (pw.equals(password))){
+                    verification = true;
+                    current = c1;
+                    System.out.println(current.getUsername());
+                    System.out.println(current.getPassword());
+                    System.out.println(current.getPoints());
+                }
+                // read next line
+                line = reader.readLine();
+            }
+            reader.close();
             
-            username = info[0];
-            password = info[1];
-            bal = Integer.parseInt(info[2]);
-
         } catch (Exception e){
             System.out.println("User doesn't exist");
         } return verification;
@@ -58,14 +72,5 @@ public class Handler {
         } catch (Exception e){
             System.out.println("Error");
         }
-    }
-    
-    public boolean logout(){
-        return current.logout();
-    }
-      
-    public String getCustomerUserName(){
-        return current.getUsername();
-    }
-    
+    }    
 }
