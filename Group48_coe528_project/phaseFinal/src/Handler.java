@@ -1,4 +1,6 @@
 import java.io.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * @author kggur
@@ -73,4 +75,13 @@ public class Handler {
             System.out.println("Error");
         }
     }    
+    
+    public ObservableList<Product> getProduct (){
+        ObservableList<Product> product = FXCollections.observableArrayList();
+        product.add(new Product("Harry Potter", 21.99, 3));
+        product.add(new Product ("Obama", 24.99, 50));
+        product.add(new Product("Baby Shark", 9.49, 1 ));
+        return product;
+    }
+    
 }

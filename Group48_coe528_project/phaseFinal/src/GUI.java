@@ -76,7 +76,7 @@ public class GUI extends Application {
                     System.out.println("Admin successfully logged in.");
                 }else if (handler.verify(username, password)){ //will create a verify method in the manager class to check for login credentials
                     
-                    //customerWindow(primaryStage, handler);
+                    customerWindow(primaryStage, handler);
                     System.out.println("Customer successfully logged in.");
                     
                 }else{
@@ -134,8 +134,14 @@ public class GUI extends Application {
 
     }
     
+    //Rania & Manav
+    public void customerWindow(Stage primaryStage, Handler a){
+        
+    }
+    
     public void managerBooks(Stage primaryStage, Handler a){
         
+        TableView<Product> bookTable;
         Handler handler = new Handler();
         
         //Title Column
@@ -158,7 +164,7 @@ public class GUI extends Application {
         selectColumn.setMinWidth(50);
         selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
         bookTable = new TableView<>();
-        bookTable.setItems(getProduct());
+        bookTable.setItems(handler.getProduct());
         bookTable.getColumns().addAll(nameColumn, priceColumn, quantityColumn, selectColumn );
 
         Button delete = new Button("Delete");
@@ -206,16 +212,6 @@ public class GUI extends Application {
         primaryStage.show();
     }
 
-    public ObservableList<Product> getProduct (){
-        ObservableList<Product> product = FXCollections.observableArrayList();
-        product.add(new Product("Harry Potter", 21.99, 3));
-        product.add(new Product ("Obama", 24.99, 50));
-        product.add(new Product("Baby Shark", 9.49, 1 ));
-        return product;
-    }
-
-    TableView<Product> bookTable;
-    
     public static void main(String[] args){
         launch(args);
     }
