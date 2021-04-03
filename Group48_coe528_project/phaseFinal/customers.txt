@@ -1,2 +1,4 @@
 karthik, gurram, 500
 waqas, jalali, 1000
+rania, password, 1500
+manav, password2, 2000
