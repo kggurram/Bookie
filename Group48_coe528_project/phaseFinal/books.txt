@@ -1,0 +1,4 @@
+Harry Potter, 21.99, 3
+Obama, 24.99, 50
+Baby Shark, 9.49, 1
+Bruh, 10.00, 30

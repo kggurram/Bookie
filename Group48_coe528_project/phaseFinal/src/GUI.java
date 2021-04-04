@@ -2,8 +2,11 @@
  * @author Group 48 - Karthik, Waqas, Manav, Rania
  */
 
+import java.util.ArrayList;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 //import javafx.collections.FXCollections;
 //import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -237,7 +240,7 @@ public class GUI extends Application {
         selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
         bookTable = new TableView<>();
         bookTable.setItems(handler.getProduct());
-        bookTable.getColumns().addAll(nameColumn, priceColumn, quantityColumn, selectColumn );
+        bookTable.getColumns().addAll(nameColumn, priceColumn, quantityColumn, selectColumn);
 
         Button delete = new Button("Delete");
         Button back = new Button("Back");
@@ -247,7 +250,20 @@ public class GUI extends Application {
         });
         
         delete.setOnAction((ActionEvent e)->{
-            //Delete book
+            ObservableList<Product> dataToDelete = FXCollections.observableArrayList();
+            for (Product book : handler.getProduct()) {  
+                System.out.println(book.getSelect().isSelected());
+                if(book.getSelect().isSelected()){
+                    dataToDelete.add(book);
+                }    
+            }   
+
+            handler.getProduct().removeAll(dataToDelete);
+            
+            for(Product test: dataToDelete){
+                System.out.println(test.getBookName());
+            }
+            
         });
 
         VBox vBox = new VBox();
