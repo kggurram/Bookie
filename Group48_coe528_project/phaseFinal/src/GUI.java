@@ -139,7 +139,48 @@ public class GUI extends Application {
     
     //Rania & Manav
     public void customerWindow(Stage primaryStage, Handler a){
+        TableView<Product> bookTable;
+        Handler handler = new Handler();
         
+        //Title Column
+        TableColumn<Product, String> nameColumn = new TableColumn<>("Title");
+        nameColumn.setMinWidth(200);
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("bookName"));
+
+        //Price Column
+        TableColumn<Product, String> priceColumn = new TableColumn<>("Price");
+        priceColumn.setMinWidth(100);
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        //Quantity Column
+        TableColumn<Product, String> quantityColumn = new TableColumn<>("Quantity");
+        quantityColumn.setMinWidth(75);
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
+        //Select Column
+        TableColumn<Product, CheckBox> selectColumn = new TableColumn("Select");
+        selectColumn.setMinWidth(50);
+        selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
+        bookTable = new TableView<>();
+        bookTable.setItems(handler.getProduct());
+        bookTable.getColumns().addAll(nameColumn, priceColumn, quantityColumn, selectColumn);
+
+        Button buy = new Button("Buy");
+        Button rNBuy = new Button("Redeem & Buy");
+        Button logout = new Button("Logout");
+
+        logout.setOnAction((ActionEvent e) -> {
+            start(primaryStage);
+        });
+
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(bookTable, buy, rNBuy, logout);
+        vBox.setPadding(new Insets(35, 35, 35, 35));
+        vBox.setSpacing(10);
+
+        Scene scene = new Scene(vBox);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
     
     public void managerBooks(Stage primaryStage, Handler a){
@@ -207,23 +248,62 @@ public class GUI extends Application {
     
     public void managerCustomers(Stage primaryStage, Handler a){
         
+        TableView<Customer> custTable;
         Handler handler = new Handler();
         
+        //Title Column
+        TableColumn<Customer, String> usernameColumn = new TableColumn<>("Username");
+        usernameColumn.setMinWidth(200);
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+
+        //Price Column
+        TableColumn<Customer, String> passwordColumn = new TableColumn<>("Password");
+        passwordColumn.setMinWidth(100);
+        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
+
+        //Quantity Column
+        TableColumn<Customer, String> pointsColumn = new TableColumn<>("points");
+        pointsColumn.setMinWidth(75);
+        pointsColumn.setCellValueFactory(new PropertyValueFactory<>("points"));
+
+        //Select Column
+        TableColumn<Customer, CheckBox> selectColumn = new TableColumn("Select");
+        selectColumn.setMinWidth(50);
+        selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
+        custTable = new TableView<>();
+        custTable.setItems(handler.getCustomers());
+        custTable.getColumns().addAll(usernameColumn, passwordColumn, pointsColumn, selectColumn);
+
+        Button delete = new Button("Delete");
         Button back = new Button("Back");
-        GridPane managerCustomersPane = new GridPane();
-        
-        managerCustomersPane.setAlignment(Pos.CENTER);
-        managerCustomersPane.setHgap(10);
-        managerCustomersPane.setVgap(10);
-        managerCustomersPane.setPadding(new Insets(25, 25, 25, 25));
-        
-        managerCustomersPane.add(back, 0, 2);
-        
+
         back.setOnAction((ActionEvent e)->{
             managerWindow(primaryStage, handler);
         });
         
-        Scene scene = new Scene(managerCustomersPane, 600, 300);
+        delete.setOnAction((ActionEvent e)->{
+            ObservableList<Product> dataToDelete = FXCollections.observableArrayList();
+            for (Product book : handler.getProduct()) {  
+                System.out.println(book.getSelect().isSelected());
+                if(book.getSelect().isSelected()){
+                    dataToDelete.add(book);
+                }    
+            }   
+
+            handler.getProduct().removeAll(dataToDelete);
+            
+            for(Product test: dataToDelete){
+                System.out.println(test.getBookName());
+            }
+            
+        });
+
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(custTable, delete, back);
+        vBox.setPadding(new Insets(35, 35, 35, 35));
+        vBox.setSpacing(10);
+
+        Scene scene = new Scene(vBox);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -8,6 +8,6 @@ public abstract class User {
 
     abstract public String getPassword();
     
-    abstract public int getPoints();
+    abstract public double getPoints();
     
 }

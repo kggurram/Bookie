@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 public class Handler {
     private String username;
     private String password;
-    private int points;
+    private double points;
     private String bookName;
     private double bookPrice;
     private int bookQuantity;
@@ -87,6 +87,34 @@ public class Handler {
         } 
 
         return product;
+    }
+    
+    public ObservableList<Customer> getCustomers (){
+        ObservableList<Customer> customers = FXCollections.observableArrayList();
+
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader("customers.txt"));
+            
+            String line = reader.readLine();
+            while (line != null) {
+                //System.out.println(line);
+                String info[] = line.split(", ");
+                username = info[0];
+                password = info[1];
+                points = Double.parseDouble(info[2]);
+                
+                customers.add(new Customer(username, password, points));
+                
+                // read next line
+                line = reader.readLine();
+            }
+            reader.close();
+            
+        } catch (Exception e){
+            System.out.println("Invalid");
+        } 
+
+        return customers;
     }
     
 }
