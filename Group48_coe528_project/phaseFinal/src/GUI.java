@@ -137,8 +137,14 @@ public class GUI extends Application {
     
     //Rania & Manav
     public void customerWindow(Stage primaryStage, Handler a){
+        
+        Handler handler = a;
+        
+        Text scenetitle = new Text("Welcome, " + handler.c1.getUsername() + ". You have " + handler.c1.getPoints());
+        System.out.println(handler.c1.getUsername());
+        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        
         TableView<Product> bookTable;
-        Handler handler = new Handler();
         
         //Title Column
         TableColumn<Product, String> nameColumn = new TableColumn<>("Title");
@@ -172,7 +178,7 @@ public class GUI extends Application {
         });
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(bookTable, buy, rNBuy, logout);
+        vBox.getChildren().addAll(scenetitle, bookTable, buy, rNBuy, logout);
         vBox.setPadding(new Insets(35, 35, 35, 35));
         vBox.setSpacing(10);
 
