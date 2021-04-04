@@ -145,6 +145,9 @@ public class GUI extends Application {
         bookName.setMinWidth(200);
         bookName.setCellValueFactory(new PropertyValueFactory<>("bookName"));
 
+        Text scenetitle = new Text("Welcome, Customer");
+        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+
         //Price Column
         TableColumn<Product, String> bookPrice = new TableColumn<>("Price");
         bookPrice.setMinWidth(100);
