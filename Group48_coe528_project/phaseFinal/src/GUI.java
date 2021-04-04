@@ -152,8 +152,8 @@ public class GUI extends Application {
         bookName.setMinWidth(200);
         bookName.setCellValueFactory(new PropertyValueFactory<>("bookName"));
 
-      //  Text scenetitle = new Text("Welcome, Customer");
-       // scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        Text scenetitle = new Text("Welcome, Customer");
+        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 
         //Price Column
         TableColumn<Product, String> bookPrice = new TableColumn<>("Price");
@@ -179,11 +179,8 @@ public class GUI extends Application {
         customerPane.setVgap(10);
         customerPane.setPadding(new Insets(25, 25, 25, 25));
         
-        customerPane.add(buy, 0, 0);
-        customerPane.add(redeemBuy, 5, 0);
-        customerPane.add(logout, 10, 0);
+      
         
-      //  customerPane.add(scenetitle, 0, 0, 2, 1);
         
         buy.setOnAction((ActionEvent e)->{
            // customerCostWindow(primaryStage, handler);
@@ -197,8 +194,19 @@ public class GUI extends Application {
             start(primaryStage);
         });
         
-        Scene scene = new Scene(customerPane, 400, 300);
-        primaryStage.setScene(scene);
+      
+        
+        
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(scenetitle, customerBookTable, buy, redeemBuy, logout);
+        vBox.setPadding(new Insets(35, 35, 35, 35));
+        vBox.setSpacing(10);
+        
+        
+        Scene scene1 = new Scene(vBox);
+       
+        primaryStage.setScene(scene1);
+        
         primaryStage.show();
 
     }
