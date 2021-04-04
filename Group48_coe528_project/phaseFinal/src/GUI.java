@@ -167,6 +167,27 @@ public class GUI extends Application {
         Button rNBuy = new Button("Redeem & Buy");
         Button logout = new Button("Logout");
 
+<<<<<<< Updated upstream
+=======
+        GridPane customerPane = new GridPane();
+        
+        customerPane.setAlignment(Pos.BOTTOM_CENTER);
+        customerPane.setHgap(10);
+        customerPane.setVgap(10);
+        customerPane.setPadding(new Insets(25, 25, 25, 25));
+        
+      
+        
+        
+        buy.setOnAction((ActionEvent e)->{
+           customerCostScreen(primaryStage, handler);
+        });
+        
+        redeemBuy.setOnAction((ActionEvent e)->{
+           customerCostScreen(primaryStage, handler);
+        });
+       
+>>>>>>> Stashed changes
         logout.setOnAction((ActionEvent e) -> {
             start(primaryStage);
         });
@@ -306,6 +327,58 @@ public class GUI extends Application {
         primaryStage.show();
     }
 
+    
+    public void customerCostScreen(Stage primaryStage, Handler a){
+        
+ 
+        
+
+        Text transactionCost = new Text("Transaction cost: ");
+        transactionCost.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        Text pointStatus = new Text("Points: " + ", Status: ");
+        pointStatus.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+       
+
+        
+       
+       
+        Button logout = new Button("Logout");
+
+        GridPane customerPane = new GridPane();
+        
+        customerPane.setAlignment(Pos.BOTTOM_CENTER);
+        customerPane.setHgap(10);
+        customerPane.setVgap(10);
+        customerPane.setPadding(new Insets(25, 25, 25, 25));
+        
+      
+        
+        
+       
+        logout.setOnAction((ActionEvent e) -> {
+            start(primaryStage);
+        });
+        
+      
+        
+        
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(transactionCost, pointStatus, logout);
+        vBox.setPadding(new Insets(35, 35, 35, 35));
+        vBox.setSpacing(10);
+        
+        
+        Scene scene1 = new Scene(vBox);
+       
+        primaryStage.setScene(scene1);
+        
+        primaryStage.show();
+
+    }
+    
+    
+    
+    
     public static void main(String[] args){
         launch(args);
     }
