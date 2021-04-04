@@ -167,8 +167,6 @@ public class GUI extends Application {
         Button rNBuy = new Button("Redeem & Buy");
         Button logout = new Button("Logout");
 
-<<<<<<< Updated upstream
-=======
         GridPane customerPane = new GridPane();
         
         customerPane.setAlignment(Pos.BOTTOM_CENTER);
@@ -187,7 +185,6 @@ public class GUI extends Application {
            customerCostScreen(primaryStage, handler);
         });
        
->>>>>>> Stashed changes
         logout.setOnAction((ActionEvent e) -> {
             start(primaryStage);
         });
