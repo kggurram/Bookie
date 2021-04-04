@@ -140,6 +140,10 @@ public class GUI extends Application {
     
     //Rania & Manav
     public void customerWindow(Stage primaryStage, Handler a){
+        
+        Text scenetitle = new Text("Welcome");
+        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        
         TableView<Product> bookTable;
         Handler handler = new Handler();
         
@@ -193,7 +197,7 @@ public class GUI extends Application {
         });
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(bookTable, buy, rNBuy, logout);
+        vBox.getChildren().addAll(scenetitle, bookTable, buy, rNBuy, logout);
         vBox.setPadding(new Insets(35, 35, 35, 35));
         vBox.setSpacing(10);
 
@@ -203,6 +207,8 @@ public class GUI extends Application {
     }
     
     public void managerBooks(Stage primaryStage, Handler a){
+        
+       
         
         TableView<Product> bookTable;
         Handler handler = new Handler();
