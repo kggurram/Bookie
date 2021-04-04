@@ -136,7 +136,43 @@ public class GUI extends Application {
     
     //Rania & Manav
     public void customerWindow(Stage primaryStage, Handler a){
+        Handler handler = new Handler();
+
+        Text scenetitle = new Text("Welcome, Customer");
+        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        Button buy = new Button("Buy");
+        Button redeemBuy = new Button("Redeem and Buy");
+        Button logout = new Button("Logout");
+
+        GridPane customerPane = new GridPane();
         
+        customerPane.setAlignment(Pos.CENTER);
+        customerPane.setHgap(10);
+        customerPane.setVgap(10);
+        customerPane.setPadding(new Insets(25, 25, 25, 25));
+        
+        customerPane.add(books, 0, 2);
+        customerPane.add(customers, 0, 3);
+        customerPane.add(logout, 0, 4);
+        
+        customerPane.add(scenetitle, 0, 0, 2, 1);
+        
+        books.setOnAction((ActionEvent e)->{
+            managerBooks(primaryStage, handler);
+        });
+        
+        customers.setOnAction((ActionEvent e)->{
+            managerCustomers(primaryStage, handler);
+        });
+       
+        logout.setOnAction((ActionEvent e) -> {
+            start(primaryStage);
+        });
+        
+        Scene scene = new Scene(customerPane, 400, 300);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
     }
     
     public void managerBooks(Stage primaryStage, Handler a){
