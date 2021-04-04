@@ -9,13 +9,12 @@ public class Product {
     private String bookName;
     private double price;
     private int quantity;
-    private CheckBox select;
+    private CheckBox select = new CheckBox();
 
     public Product (String bookName, double price, int quantity){
         this.bookName = bookName;
         this.price = price;
         this.quantity = quantity;
-        this.select = new CheckBox();
     }
 
     public String getBookName(){
