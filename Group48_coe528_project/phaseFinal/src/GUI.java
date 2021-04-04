@@ -78,10 +78,8 @@ public class GUI extends Application {
                     managerWindow(primaryStage, handler);
                     System.out.println("Admin successfully logged in.");
                 }else if (handler.verify(username, password)){ //will create a verify method in the manager class to check for login credentials
-                    
                     customerWindow(primaryStage, handler);
                     System.out.println("Customer successfully logged in.");
-                    
                 }else{
                     System.out.println("Invalid Login.");
                     System.out.println(username);
