@@ -77,10 +77,17 @@ public class GUI extends Application {
                 if (username.equals("admin") && password.equals("admin")){
                     managerWindow(primaryStage, handler);
                     System.out.println("Admin successfully logged in.");
-                }else if (handler.verify(username, password)){ //will create a verify method in the manager class to check for login credentials
+                }
+                //please do not change, it is just to test the customer classes
+                if (username.equals(username) && password.equals(password)){
                     customerWindow(primaryStage, handler);
                     System.out.println("Customer successfully logged in.");
-                }else{
+                }
+              //  else if (handler.verify(username, password)){ //will create a verify method in the manager class to check for login credentials
+               //     customerWindow(primaryStage, handler);
+               //     System.out.println("Customer successfully logged in.");
+             //   }
+                else{
                     System.out.println("Invalid Login.");
                     System.out.println(username);
                     System.out.println(password);
@@ -181,7 +188,7 @@ public class GUI extends Application {
            customerCostScreen(primaryStage, handler);
         });
         
-        redeemBuy.setOnAction((ActionEvent e)->{
+        rNBuy.setOnAction((ActionEvent e)->{
            customerCostScreen(primaryStage, handler);
         });
        
