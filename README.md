@@ -1,2 +1,3 @@
-# COE528-Project
- Bookstore Application
+# COE528 Project
+---
+ A bookstore application implemented using JavaFX amongst others.
