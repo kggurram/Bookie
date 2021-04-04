@@ -135,11 +135,29 @@ public class GUI extends Application {
     }
     
     //Rania & Manav
-    public void customerWindow(Stage primaryStage, Handler a){
+    public void customerStartWindow(Stage primaryStage, Handler a){
+        
+        TableView<Product> customerBookTable;
         Handler handler = new Handler();
+        
+        //Title Column
+        TableColumn<Product, String> bookName = new TableColumn<>("Book Title");
+        bookName.setMinWidth(200);
+        bookName.setCellValueFactory(new PropertyValueFactory<>("bookName"));
 
-        Text scenetitle = new Text("Welcome, Customer");
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        //Price Column
+        TableColumn<Product, String> bookPrice = new TableColumn<>("Price");
+        bookPrice.setMinWidth(100);
+        bookPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        //Select Column
+        TableColumn<Product, CheckBox> selectColumn = new TableColumn("Select");
+        selectColumn.setMinWidth(50);
+        selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
+        customerBookTable = new TableView<>();
+        customerBookTable.setItems(handler.getProduct());
+        customerBookTable.getColumns().addAll(bookName, bookPrice, selectColumn );
+        
         Button buy = new Button("Buy");
         Button redeemBuy = new Button("Redeem and Buy");
         Button logout = new Button("Logout");
@@ -151,18 +169,18 @@ public class GUI extends Application {
         customerPane.setVgap(10);
         customerPane.setPadding(new Insets(25, 25, 25, 25));
         
-        customerPane.add(books, 0, 2);
-        customerPane.add(customers, 0, 3);
-        customerPane.add(logout, 0, 4);
+        customerPane.add(buy, 0, 0);
+        customerPane.add(redeemBuy, 1, 0);
+        customerPane.add(logout, 2, 0);
         
         customerPane.add(scenetitle, 0, 0, 2, 1);
         
-        books.setOnAction((ActionEvent e)->{
-            managerBooks(primaryStage, handler);
+        buy.setOnAction((ActionEvent e)->{
+            customerCostWindow(primaryStage, handler);
         });
         
-        customers.setOnAction((ActionEvent e)->{
-            managerCustomers(primaryStage, handler);
+        redeemBuy.setOnAction((ActionEvent e)->{
+            customerCostWindow(primaryStage, handler);
         });
        
         logout.setOnAction((ActionEvent e) -> {
