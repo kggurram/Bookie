@@ -33,7 +33,8 @@ import javafx.scene.layout.VBox;
 public class GUI extends Application {
 
     TableView<Product> bookTable;
-    TextField addTitle, addPrice, addQuantity;
+    TextField addTitle, addPrice, addQuantity, addUsername, addPassword, addPoints;
+    public ObservableList<Product> productSelected;
     
     @Override
     public void start(Stage primaryStage){ 
@@ -279,19 +280,22 @@ public class GUI extends Application {
 
         
         delete.setOnAction((ActionEvent e)->{
-            ObservableList<Product> dataToDelete = FXCollections.observableArrayList();
-            for (Product book : handler.getProduct()){  
-                System.out.println(book.getSelect().isSelected());
-                if(book.getSelect().isSelected()){
-                    dataToDelete.add(book);
-                }    
-            }   
+//            ObservableList<Product> dataToDelete = FXCollections.observableArrayList();
+//            for (Product book : handler.getProduct()){  
+//                System.out.println(book.getSelect().isSelected());
+//                if(book.getSelect().isSelected()){
+//                    dataToDelete.add(book);
+//                }    
+//            }   
+//
+//            handler.getProduct().removeAll(dataToDelete);
+//            
+//            for(Product test: dataToDelete){
+//                System.out.println(test.getBookName());
+//            }
 
-            handler.getProduct().removeAll(dataToDelete);
-            
-            for(Product test: dataToDelete){
-                System.out.println(test.getBookName());
-            }
+           productSelected = bookTable.getSelectionModel().getSelectedItems();
+           productSelected.forEach(handler.product::remove);
             
         });   
     }
@@ -301,6 +305,21 @@ public class GUI extends Application {
         
         TableView<Customer> custTable;
         Handler handler = new Handler();
+        
+        //Username input
+        addUsername = new TextField();
+        addUsername.setPromptText("Username");
+        addUsername.setMinWidth(100);
+
+        //Password Input
+        addPassword = new TextField();
+        addPassword.setPromptText("Password");
+        addPassword.setMinWidth(80);
+
+        //Points Input
+        addPoints = new TextField();
+        addPoints.setPromptText("Points");
+        addPoints.setMinWidth(40);
         
         //Title Column
         TableColumn<Customer, String> usernameColumn = new TableColumn<>("Username");
@@ -327,7 +346,14 @@ public class GUI extends Application {
 
         Button delete = new Button("Delete");
         Button back = new Button("Back");
-
+        Button add = new Button("Add");
+        add.setOnAction((ActionEvent e) ->{
+            handler.addCustomer(addUsername.getText(),addPassword.getText(),Integer.parseInt(addPoints.getText()));
+            addUsername.clear();
+            addPassword.clear();
+            addPoints.clear();
+        });
+        
         back.setOnAction((ActionEvent e)->{
             managerWindow(primaryStage, handler);
         });
@@ -349,8 +375,13 @@ public class GUI extends Application {
             
         });
 
+        HBox hBox = new HBox();
+        //hBox.setPadding(new Insets(10,10,10,10));
+        hBox.setSpacing(10);
+        hBox.getChildren().addAll(addUsername, addPassword, addPoints, add);
+        
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(custTable, delete, back);
+        vBox.getChildren().addAll(custTable, delete, back, hBox);
         vBox.setPadding(new Insets(35, 35, 35, 35));
         vBox.setSpacing(10);
 

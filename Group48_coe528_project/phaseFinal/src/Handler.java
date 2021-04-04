@@ -16,6 +16,8 @@ public class Handler {
     public User current;
     public Customer c1;
     public ObservableList<Product> product = FXCollections.observableArrayList();
+    public ObservableList<Customer> customers = FXCollections.observableArrayList();
+
     
     public boolean verify(String user, String pw) {
         boolean verification;
@@ -58,12 +60,6 @@ public class Handler {
         
     }    
     
-    
-    
-    public void deleteBook(String name, String price, int quantity){
-       
-    }  
-    
     public ObservableList<Product> getProduct (){
         
         try{
@@ -79,7 +75,7 @@ public class Handler {
                 
                 product.add(new Product(bookName, bookPrice, bookQuantity));
                 
-                // read next line
+                // read next line 
                 line = reader.readLine();
             }
             reader.close();
@@ -93,11 +89,31 @@ public class Handler {
     
     public void addBook(String title, double price, int quantity) {
         product.add(new Product(title, price, quantity));
-        
+        try { 
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("books.txt", true)));
+            out.println(title + ", " + price + ", " + quantity);
+            out.flush();
+            out.close();
+        }
+        catch (IOException e) {  
+          System.out.println(e);
+        }
+    }
+    
+    public void addCustomer(String username, String password, int points) {
+        customers.add(new Customer(username, password, points));
+        try { 
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("customers.txt", true)));
+        out.println(username + ", " + password + ", " + points);
+        out.flush();
+        out.close();
+        }
+        catch (IOException e) {  
+          System.out.println(e);
+        }
     }
     
     public ObservableList<Customer> getCustomers (){
-        ObservableList<Customer> customers = FXCollections.observableArrayList();
 
         try{
             BufferedReader reader = new BufferedReader(new FileReader("customers.txt"));

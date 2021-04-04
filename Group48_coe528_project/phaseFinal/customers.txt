@@ -2,6 +2,3 @@ karthik, gurram, 500
 waqas, jalali, 1000
 rania, password, 1500
 manav, password2, 2000
-mahir, ihaveaquestion, 0
-olivia, das, 6
-bruv, innit, 10
