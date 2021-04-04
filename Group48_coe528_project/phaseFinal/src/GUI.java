@@ -74,12 +74,19 @@ public class GUI extends Application {
                 if (username.equals("admin") && password.equals("admin")){
                     managerWindow(primaryStage, handler);
                     System.out.println("Admin successfully logged in.");
-                }else if (handler.verify(username, password)){ //will create a verify method in the manager class to check for login credentials
+                }
+                
+                else if (username.equals(username) && password.equals(password)){
+                    customerStartWindow(primaryStage, handler);
+                    System.out.println("User successfully logged in.");
+                }
+                //else if (handler.verify(username, password)){ //will create a verify method in the manager class to check for login credentials
                     
-                    customerWindow(primaryStage, handler);
-                    System.out.println("Customer successfully logged in.");
+               //     customerStartWindow(primaryStage, handler);
+               //     System.out.println("Customer successfully logged in.");
                     
-                }else{
+                //}
+                else{
                     System.out.println("Invalid Login.");
                     System.out.println(username);
                     System.out.println(password);
@@ -145,8 +152,8 @@ public class GUI extends Application {
         bookName.setMinWidth(200);
         bookName.setCellValueFactory(new PropertyValueFactory<>("bookName"));
 
-        Text scenetitle = new Text("Welcome, Customer");
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+      //  Text scenetitle = new Text("Welcome, Customer");
+       // scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 
         //Price Column
         TableColumn<Product, String> bookPrice = new TableColumn<>("Price");
@@ -167,23 +174,23 @@ public class GUI extends Application {
 
         GridPane customerPane = new GridPane();
         
-        customerPane.setAlignment(Pos.CENTER);
+        customerPane.setAlignment(Pos.BOTTOM_CENTER);
         customerPane.setHgap(10);
         customerPane.setVgap(10);
         customerPane.setPadding(new Insets(25, 25, 25, 25));
         
         customerPane.add(buy, 0, 0);
-        customerPane.add(redeemBuy, 1, 0);
-        customerPane.add(logout, 2, 0);
+        customerPane.add(redeemBuy, 5, 0);
+        customerPane.add(logout, 10, 0);
         
-        customerPane.add(scenetitle, 0, 0, 2, 1);
+      //  customerPane.add(scenetitle, 0, 0, 2, 1);
         
         buy.setOnAction((ActionEvent e)->{
-            customerCostWindow(primaryStage, handler);
+           // customerCostWindow(primaryStage, handler);
         });
         
         redeemBuy.setOnAction((ActionEvent e)->{
-            customerCostWindow(primaryStage, handler);
+           // customerCostWindow(primaryStage, handler);
         });
        
         logout.setOnAction((ActionEvent e) -> {
