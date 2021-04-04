@@ -2,11 +2,8 @@
  * @author Group 48 - Karthik, Waqas, Manav, Rania
  */
 
-import java.util.ArrayList;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 //import javafx.collections.FXCollections;
 //import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -77,12 +74,19 @@ public class GUI extends Application {
                 if (username.equals("admin") && password.equals("admin")){
                     managerWindow(primaryStage, handler);
                     System.out.println("Admin successfully logged in.");
-                }else if (handler.verify(username, password)){ //will create a verify method in the manager class to check for login credentials
+                }
+                
+                else if (username.equals(username) && password.equals(password)){
+                    customerStartWindow(primaryStage, handler);
+                    System.out.println("User successfully logged in.");
+                }
+                //else if (handler.verify(username, password)){ //will create a verify method in the manager class to check for login credentials
                     
-                    customerWindow(primaryStage, handler);
-                    System.out.println("Customer successfully logged in.");
+               //     customerStartWindow(primaryStage, handler);
+               //     System.out.println("Customer successfully logged in.");
                     
-                }else{
+                //}
+                else{
                     System.out.println("Invalid Login.");
                     System.out.println(username);
                     System.out.println(password);
@@ -94,6 +98,117 @@ public class GUI extends Application {
         Scene scene = new Scene(grid, 400, 300);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+    
+    public void managerWindow(Stage primaryStage, Handler a){
+
+        Handler handler = new Handler();
+
+        Text scenetitle = new Text("Welcome, Administrator");
+        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        Button books = new Button("Books");
+        Button customers = new Button("Customers");
+        Button logout = new Button("Logout");
+
+        GridPane managerPane = new GridPane();
+        
+        managerPane.setAlignment(Pos.CENTER);
+        managerPane.setHgap(10);
+        managerPane.setVgap(10);
+        managerPane.setPadding(new Insets(25, 25, 25, 25));
+        
+        managerPane.add(books, 0, 2);
+        managerPane.add(customers, 0, 3);
+        managerPane.add(logout, 0, 4);
+        
+        managerPane.add(scenetitle, 0, 0, 2, 1);
+        
+        books.setOnAction((ActionEvent e)->{
+            managerBooks(primaryStage, handler);
+        });
+        
+        customers.setOnAction((ActionEvent e)->{
+            managerCustomers(primaryStage, handler);
+        });
+       
+        logout.setOnAction((ActionEvent e) -> {
+            start(primaryStage);
+        });
+        
+        Scene scene = new Scene(managerPane, 400, 300);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+    }
+    
+    //Rania & Manav
+    public void customerStartWindow(Stage primaryStage, Handler a){
+        
+        TableView<Product> customerBookTable;
+        Handler handler = new Handler();
+        
+        //Title Column
+        TableColumn<Product, String> bookName = new TableColumn<>("Book Title");
+        bookName.setMinWidth(200);
+        bookName.setCellValueFactory(new PropertyValueFactory<>("bookName"));
+
+        Text scenetitle = new Text("Welcome, Customer");
+        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+
+        //Price Column
+        TableColumn<Product, String> bookPrice = new TableColumn<>("Price");
+        bookPrice.setMinWidth(100);
+        bookPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        //Select Column
+        TableColumn<Product, CheckBox> selectColumn = new TableColumn("Select");
+        selectColumn.setMinWidth(50);
+        selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
+        customerBookTable = new TableView<>();
+        customerBookTable.setItems(handler.getProduct());
+        customerBookTable.getColumns().addAll(bookName, bookPrice, selectColumn );
+        
+        Button buy = new Button("Buy");
+        Button redeemBuy = new Button("Redeem and Buy");
+        Button logout = new Button("Logout");
+
+        GridPane customerPane = new GridPane();
+        
+        customerPane.setAlignment(Pos.BOTTOM_CENTER);
+        customerPane.setHgap(10);
+        customerPane.setVgap(10);
+        customerPane.setPadding(new Insets(25, 25, 25, 25));
+        
+      
+        
+        
+        buy.setOnAction((ActionEvent e)->{
+           // customerCostWindow(primaryStage, handler);
+        });
+        
+        redeemBuy.setOnAction((ActionEvent e)->{
+           // customerCostWindow(primaryStage, handler);
+        });
+       
+        logout.setOnAction((ActionEvent e) -> {
+            start(primaryStage);
+        });
+        
+      
+        
+        
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(scenetitle, customerBookTable, buy, redeemBuy, logout);
+        vBox.setPadding(new Insets(35, 35, 35, 35));
+        vBox.setSpacing(10);
+        
+        
+        Scene scene1 = new Scene(vBox);
+       
+        primaryStage.setScene(scene1);
+        
+        primaryStage.show();
+
     }
     
     public void managerBooks(Stage primaryStage, Handler a){
@@ -167,107 +282,6 @@ public class GUI extends Application {
         Scene scene = new Scene(managerCustomersPane, 600, 300);
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    public void managerWindow(Stage primaryStage, Handler a){
-
-        Handler handler = new Handler();
-
-        Text scenetitle = new Text("Welcome, Administrator");
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        Button books = new Button("Books");
-        Button customers = new Button("Customers");
-        Button logout = new Button("Logout");
-
-        GridPane managerPane = new GridPane();
-        
-        managerPane.setAlignment(Pos.CENTER);
-        managerPane.setHgap(10);
-        managerPane.setVgap(10);
-        managerPane.setPadding(new Insets(25, 25, 25, 25));
-        
-        managerPane.add(books, 0, 2);
-        managerPane.add(customers, 0, 3);
-        managerPane.add(logout, 0, 4);
-        
-        managerPane.add(scenetitle, 0, 0, 2, 1);
-        
-        books.setOnAction((ActionEvent e)->{
-            managerBooks(primaryStage, handler);
-        });
-        
-        customers.setOnAction((ActionEvent e)->{
-            managerCustomers(primaryStage, handler);
-        });
-       
-        logout.setOnAction((ActionEvent e) -> {
-            start(primaryStage);
-        });
-        
-        Scene scene = new Scene(managerPane, 400, 300);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
-    }
-    
-    //Rania & Manav
-    public void customerWindow(Stage primaryStage, Handler a){
-        
-    }
-
-        //Price Column
-        TableColumn<Product, String> priceColumn = new TableColumn<>("Price");
-        priceColumn.setMinWidth(100);
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-        //Quantity Column
-        TableColumn<Product, String> quantityColumn = new TableColumn<>("Quantity");
-        quantityColumn.setMinWidth(75);
-        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-
-        //Select Column
-        TableColumn<Product, CheckBox> selectColumn = new TableColumn("Select");
-        selectColumn.setMinWidth(50);
-        selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
-        bookTable = new TableView<>();
-        bookTable.setItems(handler.getProduct());
-        bookTable.getColumns().addAll(nameColumn, priceColumn, quantityColumn, selectColumn);
-
-        Button delete = new Button("Delete");
-        Button back = new Button("Back");
-
-        back.setOnAction((ActionEvent e)->{
-            managerWindow(primaryStage, handler);
-        });
-        
-        delete.setOnAction((ActionEvent e)->{
-            ObservableList<Product> dataToDelete = FXCollections.observableArrayList();
-            for (Product book : handler.getProduct()) {  
-                System.out.println(book.getSelect().isSelected());
-                if(book.getSelect().isSelected()){
-                    dataToDelete.add(book);
-                }    
-            }   
-
-            handler.getProduct().removeAll(dataToDelete);
-            
-            for(Product test: dataToDelete){
-                System.out.println(test.getBookName());
-            }
-            
-        });
-
-        VBox vBox = new VBox();
-        vBox.getChildren().addAll(bookTable, delete, back);
-        vBox.setPadding(new Insets(35, 35, 35, 35));
-        vBox.setSpacing(10);
-
-        Scene scene = new Scene(vBox);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
-    }
-    
     }
 
     public static void main(String[] args){
