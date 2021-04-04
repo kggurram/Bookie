@@ -100,6 +100,79 @@ public class GUI extends Application {
         primaryStage.show();
     }
     
+    public void managerBooks(Stage primaryStage, Handler a){
+        
+        TableView<Product> bookTable;
+        Handler handler = new Handler();
+        
+        //Title Column
+        TableColumn<Product, String> nameColumn = new TableColumn<>("Title");
+        nameColumn.setMinWidth(200);
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("bookName"));
+
+        //Price Column
+        TableColumn<Product, String> priceColumn = new TableColumn<>("Price");
+        priceColumn.setMinWidth(100);
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        //Quantity Column
+        TableColumn<Product, String> quantityColumn = new TableColumn<>("Quantity");
+        quantityColumn.setMinWidth(75);
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
+        //Select Column
+        TableColumn<Product, CheckBox> selectColumn = new TableColumn("Select");
+        selectColumn.setMinWidth(50);
+        selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
+        bookTable = new TableView<>();
+        bookTable.setItems(handler.getProduct());
+        bookTable.getColumns().addAll(nameColumn, priceColumn, quantityColumn, selectColumn );
+
+        Button delete = new Button("Delete");
+        Button back = new Button("Back");
+
+        back.setOnAction((ActionEvent e)->{
+            managerWindow(primaryStage, handler);
+        });
+        
+        delete.setOnAction((ActionEvent e)->{
+            //Delete book
+        });
+
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(bookTable, delete, back);
+        vBox.setPadding(new Insets(35, 35, 35, 35));
+        vBox.setSpacing(10);
+
+        Scene scene = new Scene(vBox);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+    }
+    
+    public void managerCustomers(Stage primaryStage, Handler a){
+        
+        Handler handler = new Handler();
+        
+        Button back = new Button("Back");
+        GridPane managerCustomersPane = new GridPane();
+        
+        managerCustomersPane.setAlignment(Pos.CENTER);
+        managerCustomersPane.setHgap(10);
+        managerCustomersPane.setVgap(10);
+        managerCustomersPane.setPadding(new Insets(25, 25, 25, 25));
+        
+        managerCustomersPane.add(back, 0, 2);
+        
+        back.setOnAction((ActionEvent e)->{
+            managerWindow(primaryStage, handler);
+        });
+        
+        Scene scene = new Scene(managerCustomersPane, 600, 300);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
     public void managerWindow(Stage primaryStage, Handler a){
 
         Handler handler = new Handler();
@@ -180,8 +253,6 @@ public class GUI extends Application {
         customerPane.setPadding(new Insets(25, 25, 25, 25));
         
       
-        
-        
         buy.setOnAction((ActionEvent e)->{
            // customerCostWindow(primaryStage, handler);
         });
@@ -195,8 +266,6 @@ public class GUI extends Application {
         });
         
       
-        
-        
         VBox vBox = new VBox();
         vBox.getChildren().addAll(scenetitle, customerBookTable, buy, redeemBuy, logout);
         vBox.setPadding(new Insets(35, 35, 35, 35));
@@ -210,78 +279,9 @@ public class GUI extends Application {
         primaryStage.show();
 
     }
+
+    public void customerCostWindow(Stage primaryStage, Handler a){
     
-    public void managerBooks(Stage primaryStage, Handler a){
-        
-        TableView<Product> bookTable;
-        Handler handler = new Handler();
-        
-        //Title Column
-        TableColumn<Product, String> nameColumn = new TableColumn<>("Title");
-        nameColumn.setMinWidth(200);
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("bookName"));
-
-        //Price Column
-        TableColumn<Product, String> priceColumn = new TableColumn<>("Price");
-        priceColumn.setMinWidth(100);
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-        //Quantity Column
-        TableColumn<Product, String> quantityColumn = new TableColumn<>("Quantity");
-        quantityColumn.setMinWidth(75);
-        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-
-        //Select Column
-        TableColumn<Product, CheckBox> selectColumn = new TableColumn("Select");
-        selectColumn.setMinWidth(50);
-        selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
-        bookTable = new TableView<>();
-        bookTable.setItems(handler.getProduct());
-        bookTable.getColumns().addAll(nameColumn, priceColumn, quantityColumn, selectColumn );
-
-        Button delete = new Button("Delete");
-        Button back = new Button("Back");
-
-        back.setOnAction((ActionEvent e)->{
-            managerWindow(primaryStage, handler);
-        });
-        
-        delete.setOnAction((ActionEvent e)->{
-            //Delete book
-        });
-
-        VBox vBox = new VBox();
-        vBox.getChildren().addAll(bookTable, delete, back);
-        vBox.setPadding(new Insets(35, 35, 35, 35));
-        vBox.setSpacing(10);
-
-        Scene scene = new Scene(vBox);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
-    }
-    
-    public void managerCustomers(Stage primaryStage, Handler a){
-        
-        Handler handler = new Handler();
-        
-        Button back = new Button("Back");
-        GridPane managerCustomersPane = new GridPane();
-        
-        managerCustomersPane.setAlignment(Pos.CENTER);
-        managerCustomersPane.setHgap(10);
-        managerCustomersPane.setVgap(10);
-        managerCustomersPane.setPadding(new Insets(25, 25, 25, 25));
-        
-        managerCustomersPane.add(back, 0, 2);
-        
-        back.setOnAction((ActionEvent e)->{
-            managerWindow(primaryStage, handler);
-        });
-        
-        Scene scene = new Scene(managerCustomersPane, 600, 300);
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
     public static void main(String[] args){
