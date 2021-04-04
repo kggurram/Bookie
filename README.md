@@ -1,3 +1,9 @@
 # COE528 Project
 
- A bookstore application implemented using JavaFX amongst others.
+## Overview
+
+ A bookstore application with various functionality implemented using JavaFX amongst others.
+
+## Developers
+
+@kggurram @waqasjal @alvirania @mpat247 :computer:
