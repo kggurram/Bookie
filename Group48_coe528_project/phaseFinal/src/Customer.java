@@ -18,14 +18,21 @@ public class Customer extends User {
         this.points = points;
     }
     
+    @Override
     public String getUsername(){
         return username;
     }
     
+    public void setUsername(String username){
+        this.username = username;
+    }
+    
+    @Override
     public String getPassword(){
         return password;
     }
     
+    @Override
     public double getPoints(){
         return points;
     }           

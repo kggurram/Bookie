@@ -13,8 +13,9 @@ public class Handler {
     private String bookName;
     private double bookPrice;
     private int bookQuantity;
-    private User current;
+    public User current;
     public Customer c1;
+    public ObservableList<Product> product = FXCollections.observableArrayList();
     
     public boolean verify(String user, String pw) {
         boolean verification;
@@ -42,12 +43,12 @@ public class Handler {
                 line = reader.readLine();
             }
             reader.close();
-            
         } catch (Exception e){
             System.out.println("User doesn't exist");
         } return verification;
-      
+
     }
+    
     
     public void addCustomer(String user, String pass) {
         
@@ -57,13 +58,14 @@ public class Handler {
         
     }    
     
+    
+    
     public void deleteBook(String name, String price, int quantity){
        
     }  
     
     public ObservableList<Product> getProduct (){
-        ObservableList<Product> product = FXCollections.observableArrayList();
-
+        
         try{
             BufferedReader reader = new BufferedReader(new FileReader("books.txt"));
             
@@ -87,6 +89,11 @@ public class Handler {
         } 
 
         return product;
+    }
+    
+    public void addBook(String title, double price, int quantity) {
+        product.add(new Product(title, price, quantity));
+        
     }
     
     public ObservableList<Customer> getCustomers (){

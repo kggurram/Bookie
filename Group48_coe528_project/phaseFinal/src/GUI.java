@@ -31,10 +31,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class GUI extends Application {
+
+    TableView<Product> bookTable;
+    TextField addTitle, addPrice, addQuantity;
     
     @Override
     public void start(Stage primaryStage){ 
-        
+
         primaryStage.setTitle("Bookstore App");
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -79,7 +82,7 @@ public class GUI extends Application {
                     System.out.println("Admin successfully logged in.");
                 }
                 
-                else if (handler.verify(username, password)){ //will create a verify method in the manager class to check for login credentials
+                else if (handler.verify(username, password)){
                     customerWindow(primaryStage, handler);
                     System.out.println("Customer successfully logged in.");
                 }
@@ -141,11 +144,12 @@ public class GUI extends Application {
     //Rania & Manav
     public void customerWindow(Stage primaryStage, Handler a){
         
-        Text scenetitle = new Text("Welcome");
+        Handler handler = new Handler();
+        
+        Text scenetitle = new Text("Welcome, " + ". You have " + " points. Your status is ");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         
         TableView<Product> bookTable;
-        Handler handler = new Handler();
         
         //Title Column
         TableColumn<Product, String> nameColumn = new TableColumn<>("Title");
@@ -180,10 +184,7 @@ public class GUI extends Application {
         customerPane.setHgap(10);
         customerPane.setVgap(10);
         customerPane.setPadding(new Insets(25, 25, 25, 25));
-        
-      
-        
-        
+
         buy.setOnAction((ActionEvent e)->{
            customerCostScreen(primaryStage, handler);
         });
@@ -208,10 +209,22 @@ public class GUI extends Application {
     
     public void managerBooks(Stage primaryStage, Handler a){
         
-       
-        
-        TableView<Product> bookTable;
         Handler handler = new Handler();
+        
+        //Title input
+        addTitle = new TextField();
+        addTitle.setPromptText("Title");
+        addTitle.setMinWidth(100);
+
+        //Price Input
+        addPrice = new TextField();
+        addPrice.setPromptText("Price");
+        addPrice.setMinWidth(80);
+
+        //Quantity Input
+        addQuantity = new TextField();
+        addQuantity.setPromptText("Quantity");
+        addQuantity.setMinWidth(40);
         
         //Title Column
         TableColumn<Product, String> nameColumn = new TableColumn<>("Title");
@@ -238,14 +251,36 @@ public class GUI extends Application {
 
         Button delete = new Button("Delete");
         Button back = new Button("Back");
+        Button add = new Button("Add");
+        add.setOnAction((ActionEvent e) ->{
+            handler.addBook(addTitle.getText(),Double.parseDouble(addPrice.getText()),Integer.parseInt(addQuantity.getText()));
+            addTitle.clear();
+            addPrice.clear();
+            addQuantity.clear();
+        });
 
         back.setOnAction((ActionEvent e)->{
             managerWindow(primaryStage, handler);
         });
+
+        HBox hBox = new HBox();
+        //hBox.setPadding(new Insets(10,10,10,10));
+        hBox.setSpacing(10);
+        hBox.getChildren().addAll(addTitle, addPrice, addQuantity, add);
+        
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(bookTable, delete, back, hBox);
+        vBox.setPadding(new Insets(35, 35, 35, 35));
+        vBox.setSpacing(10);
+
+        Scene scene = new Scene(vBox);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
         
         delete.setOnAction((ActionEvent e)->{
             ObservableList<Product> dataToDelete = FXCollections.observableArrayList();
-            for (Product book : handler.getProduct()) {  
+            for (Product book : handler.getProduct()){  
                 System.out.println(book.getSelect().isSelected());
                 if(book.getSelect().isSelected()){
                     dataToDelete.add(book);
@@ -258,18 +293,9 @@ public class GUI extends Application {
                 System.out.println(test.getBookName());
             }
             
-        });
-
-        VBox vBox = new VBox();
-        vBox.getChildren().addAll(bookTable, delete, back);
-        vBox.setPadding(new Insets(35, 35, 35, 35));
-        vBox.setSpacing(10);
-
-        Scene scene = new Scene(vBox);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
+        });   
     }
+    
     
     public void managerCustomers(Stage primaryStage, Handler a){
         
