@@ -1,6 +1,7 @@
 import java.io.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.CheckBox;
 
 /**
  * @author kggur
@@ -176,5 +177,8 @@ public class Handler {
 
         return customers;
     }
+    
+    
+    
     
 }

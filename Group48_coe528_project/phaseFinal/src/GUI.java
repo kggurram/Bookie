@@ -40,6 +40,7 @@ public class GUI extends Application {
     public ObservableList<Product> productSelected;
     public ObservableList<Customer> custSelected;
     
+    
     @Override
     public void start(Stage primaryStage){ 
 
@@ -149,9 +150,10 @@ public class GUI extends Application {
     //Rania & Manav
     public void customerWindow(Stage primaryStage, Handler a){
         
-        Handler handler = new Handler();
         
-        Text scenetitle = new Text("Welcome, " + ". You have " + " points. Your status is ");
+        Handler handler = new Handler();
+        String status;
+        Text scenetitle = new Text("Welcome, " + ". You have " + " points. Your status is " );
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         
         TableView<Product> bookTable;
@@ -372,9 +374,11 @@ public class GUI extends Application {
 
     public void customerCostScreen(Stage primaryStage, Handler a){
 
+        
+        
         Text transactionCost = new Text("Transaction cost: ");
         transactionCost.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        Text pointStatus = new Text("Points: " + ", Status: ");
+        Text pointStatus = new Text("Points: " + ", Status: " );
         pointStatus.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
        
         Button logout = new Button("Logout");
