@@ -2,7 +2,10 @@
  * @author Group 48 - Karthik, Waqas, Manav, Rania
  */
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
@@ -35,6 +38,7 @@ public class GUI extends Application {
     TableView<Product> bookTable;
     TextField addTitle, addPrice, addQuantity, addUsername, addPassword, addPoints;
     public ObservableList<Product> productSelected;
+    public ObservableList<Customer> custSelected;
     
     @Override
     public void start(Stage primaryStage){ 
@@ -242,13 +246,9 @@ public class GUI extends Application {
         quantityColumn.setMinWidth(75);
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
-        //Select Column
-        TableColumn<Product, CheckBox> selectColumn = new TableColumn("Select");
-        selectColumn.setMinWidth(50);
-        selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
         bookTable = new TableView<>();
         bookTable.setItems(handler.getProduct());
-        bookTable.getColumns().addAll(nameColumn, priceColumn, quantityColumn, selectColumn);
+        bookTable.getColumns().addAll(nameColumn, priceColumn, quantityColumn);
 
         Button delete = new Button("Delete");
         Button back = new Button("Back");
@@ -277,29 +277,19 @@ public class GUI extends Application {
         Scene scene = new Scene(vBox);
         primaryStage.setScene(scene);
         primaryStage.show();
-
         
         delete.setOnAction((ActionEvent e)->{
-//            ObservableList<Product> dataToDelete = FXCollections.observableArrayList();
-//            for (Product book : handler.getProduct()){  
-//                System.out.println(book.getSelect().isSelected());
-//                if(book.getSelect().isSelected()){
-//                    dataToDelete.add(book);
-//                }    
-//            }   
-//
-//            handler.getProduct().removeAll(dataToDelete);
-//            
-//            for(Product test: dataToDelete){
-//                System.out.println(test.getBookName());
-//            }
-
+            
            productSelected = bookTable.getSelectionModel().getSelectedItems();
+           try {
+                handler.deleteBook(productSelected.get(0));
+            } catch (IOException ex) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
            productSelected.forEach(handler.product::remove);
             
         });   
     }
-    
     
     public void managerCustomers(Stage primaryStage, Handler a){
         
@@ -336,13 +326,9 @@ public class GUI extends Application {
         pointsColumn.setMinWidth(75);
         pointsColumn.setCellValueFactory(new PropertyValueFactory<>("points"));
 
-        //Select Column
-        TableColumn<Customer, CheckBox> selectColumn = new TableColumn("Select");
-        selectColumn.setMinWidth(50);
-        selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
         custTable = new TableView<>();
         custTable.setItems(handler.getCustomers());
-        custTable.getColumns().addAll(usernameColumn, passwordColumn, pointsColumn, selectColumn);
+        custTable.getColumns().addAll(usernameColumn, passwordColumn, pointsColumn);
 
         Button delete = new Button("Delete");
         Button back = new Button("Back");
@@ -359,21 +345,16 @@ public class GUI extends Application {
         });
         
         delete.setOnAction((ActionEvent e)->{
-            ObservableList<Product> dataToDelete = FXCollections.observableArrayList();
-            for (Product book : handler.getProduct()) {  
-                System.out.println(book.getSelect().isSelected());
-                if(book.getSelect().isSelected()){
-                    dataToDelete.add(book);
-                }    
-            }   
-
-            handler.getProduct().removeAll(dataToDelete);
             
-            for(Product test: dataToDelete){
-                System.out.println(test.getBookName());
+           custSelected = custTable.getSelectionModel().getSelectedItems();
+           try {
+                handler.deleteCustomer(custSelected.get(0));
+            } catch (IOException ex) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
+           custSelected.forEach(handler.customers::remove);
             
-        });
+        });   
 
         HBox hBox = new HBox();
         //hBox.setPadding(new Insets(10,10,10,10));
@@ -392,18 +373,11 @@ public class GUI extends Application {
 
     
     public void customerCostScreen(Stage primaryStage, Handler a){
-        
- 
-        
 
         Text transactionCost = new Text("Transaction cost: ");
         transactionCost.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         Text pointStatus = new Text("Points: " + ", Status: ");
         pointStatus.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-       
-
-        
-       
        
         Button logout = new Button("Logout");
 
@@ -413,34 +387,21 @@ public class GUI extends Application {
         customerPane.setHgap(10);
         customerPane.setVgap(10);
         customerPane.setPadding(new Insets(25, 25, 25, 25));
-        
-      
-        
-        
        
         logout.setOnAction((ActionEvent e) -> {
             start(primaryStage);
         });
-        
-      
-        
-        
+
         VBox vBox = new VBox();
         vBox.getChildren().addAll(transactionCost, pointStatus, logout);
         vBox.setPadding(new Insets(35, 35, 35, 35));
         vBox.setSpacing(10);
-        
-        
+
         Scene scene1 = new Scene(vBox);
-       
         primaryStage.setScene(scene1);
-        
         primaryStage.show();
 
     }
-    
-    
-    
     
     public static void main(String[] args){
         launch(args);

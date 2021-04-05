@@ -49,16 +49,7 @@ public class Handler {
             System.out.println("User doesn't exist");
         } return verification;
 
-    }
-    
-    
-    public void addCustomer(String user, String pass) {
-        
-    }
-    
-    public void deleteCustomer(String user, String pass, double points){
-        
-    }    
+    } 
     
     public ObservableList<Product> getProduct (){
         
@@ -100,6 +91,30 @@ public class Handler {
         }
     }
     
+    public void deleteBook(Product book) throws FileNotFoundException, IOException{
+        File inputFile = new File("books.txt");
+        File tempFile = new File("myTempFile.txt");
+
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+        String lineToRemove = book.getBookName();
+        
+        String currentLine;
+
+        while((currentLine = reader.readLine()) != null) {
+            // trim newline when comparing with lineToRemove
+            String trimmedLine = currentLine.trim();
+            if(trimmedLine.contains(lineToRemove)) continue;
+            writer.write(currentLine + System.getProperty("line.separator"));
+            System.out.println(currentLine);
+        }
+        writer.close(); 
+        reader.close(); 
+        inputFile.delete();
+        boolean successful = tempFile.renameTo(inputFile);
+    }   
+    
     public void addCustomer(String username, String password, int points) {
         customers.add(new Customer(username, password, points));
         try { 
@@ -112,6 +127,30 @@ public class Handler {
           System.out.println(e);
         }
     }
+    
+    public void deleteCustomer(Customer customer) throws FileNotFoundException, IOException{
+        File inputFile = new File("customers.txt");
+        File tempFile = new File("myTempFile2.txt");
+
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+        String lineToRemove = customer.getUsername();
+        
+        String currentLine;
+
+        while((currentLine = reader.readLine()) != null) {
+            // trim newline when comparing with lineToRemove
+            String trimmedLine = currentLine.trim();
+            if(trimmedLine.contains(lineToRemove)) continue;
+            writer.write(currentLine + System.getProperty("line.separator"));
+            System.out.println(currentLine);
+        }
+        writer.close(); 
+        reader.close(); 
+        inputFile.delete();
+        boolean successful = tempFile.renameTo(inputFile);
+    }   
     
     public ObservableList<Customer> getCustomers (){
 
