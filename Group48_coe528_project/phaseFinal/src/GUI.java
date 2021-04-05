@@ -177,9 +177,6 @@ public class GUI extends Application {
       //  TableColumn<Product, CheckBox> selectColumn = new TableColumn("Select");
        // selectColumn.setMinWidth(50);
      //   selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
-       
-     
-        
 
         Button buy = new Button("Buy");
         Button rNBuy = new Button("Redeem & Buy");
@@ -196,19 +193,15 @@ public class GUI extends Application {
         bookTable.setItems(handler.getProduct());
         bookTable.getColumns().addAll(nameColumn, priceColumn, quantityColumn);
         buy.setOnAction((ActionEvent e)->{
-          
-            
+
             productSelected = bookTable.getSelectionModel().getSelectedItems();
-            
-            
+
             try {
                 customerCostScreen(primaryStage, handler, handler.purchaseBook(productSelected.get(0)));
             } catch (IOException ex) {
                 Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-           
-           
+ 
         });
         
         rNBuy.setOnAction((ActionEvent e)->{
@@ -286,7 +279,7 @@ public class GUI extends Application {
         });
 
         HBox hBox = new HBox();
-        //hBox.setPadding(new Insets(10,10,10,10));
+
         hBox.setSpacing(10);
         hBox.getChildren().addAll(addTitle, addPrice, add);
         
