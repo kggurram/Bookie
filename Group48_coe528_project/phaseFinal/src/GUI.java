@@ -40,8 +40,6 @@ public class GUI extends Application {
     public ObservableList<Product> productSelected;
     public ObservableList<Customer> custSelected;
 
-    
-    
     @Override
     public void start(Stage primaryStage){ 
 
