@@ -173,11 +173,7 @@ public class GUI extends Application {
         quantityColumn.setMinWidth(75);
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
-        //Select Column
-      //  TableColumn<Product, CheckBox> selectColumn = new TableColumn("Select");
-       // selectColumn.setMinWidth(50);
-     //   selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
-
+       
         Button buy = new Button("Buy");
         Button rNBuy = new Button("Redeem & Buy");
         Button logout = new Button("Logout");
@@ -384,10 +380,9 @@ public class GUI extends Application {
         primaryStage.show();
     }
 
-    public void customerCostScreen(Stage primaryStage, Handler a, double total){
+    public void customerCostScreen(Stage primaryStage, Handler a, double total)
+    {
 
-        
-        
         Text transactionCost = new Text("Transaction cost: " + total);
         transactionCost.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         Text pointStatus = new Text("Points: " + ", Status: " );

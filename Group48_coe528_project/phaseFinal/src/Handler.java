@@ -100,10 +100,7 @@ public class Handler {
         return total;
     }
     
-    
-    
-    
-    
+   
     public void deleteBook(Product book) throws FileNotFoundException, IOException{
         File inputFile = new File("books.txt");
         File tempFile = new File("myTempFile.txt");
@@ -190,8 +187,5 @@ public class Handler {
 
         return customers;
     }
-    
-    
-    
     
 }
