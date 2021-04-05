@@ -6,33 +6,33 @@ A bookstore application implemented using JavaFX amongst others.
 
 (i) Owner's usage of the app:    
 
-    [x] add a book
+    [WORKING] add a book
 
-    [x] delete a selected book
+    [WORKING] delete a selected book
 
-    [x] add a customer
+    [WORKING] add a customer
 
-    [x] delete a selected customer
+    [WORKING] delete a selected customer
 
-    [x] [Logout] button
+    [WORKING] [Logout] button
 
-    [x] [Back] button
+    [WORKING] [Back] button
 
 (ii) Customer's usage of the app:
 
-    [-] [Buy] button works only for 1 selection at a time
+    [WORKS ONLY FOR 1 SELECTION AT A TIME] [Buy] button works
 
-    [ ] [Redeem Points and Buy] does not work
+    [NOT WORKING] [Redeem Points and Buy] button works
 
-    [x] [logout] button works
+    [WORKING] [logout] button works
 
 (iii) On closing the window by clicking
 
-    [x] app saves info to two files books.txt and customers.txt properly
+    [WORKING] app saves info to two files books.txt and customers.txt properly
 
 (iv) On re-run of the app, the data from files
 
-    [x] books.txt and customers.txt should be re-loaded properly
+    [WORKING] books.txt and customers.txt are re-loaded properly
 
 ## Developers
 
