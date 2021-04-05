@@ -11,6 +11,7 @@ public class Customer extends User {
     private String password;
     private double points;
     private CheckBox select = new CheckBox();
+    private String status;
 
     public Customer (String username, String password, double points){
         this.username = username;
@@ -44,4 +45,18 @@ public class Customer extends User {
     public void setSelect(CheckBox select){
         this.select = select;
     }
+    
+    public String getStatus(){
+        if(points < 1000){
+            status = "Silver";
+        }else{
+            status = "Gold";
+        }
+        return status;
+    }
+    
+    public void setStatus(String status){
+        this.status = status;
+    }
+    
 }

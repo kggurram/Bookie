@@ -233,7 +233,7 @@ public class GUI extends Application {
         
         //Title Column
         TableColumn<Product, String> nameColumn = new TableColumn<>("Title");
-        nameColumn.setMinWidth(200);
+        nameColumn.setMinWidth(400);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("bookName"));
 
         //Price Column
@@ -242,19 +242,19 @@ public class GUI extends Application {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
 
         //Quantity Column
-        TableColumn<Product, String> quantityColumn = new TableColumn<>("Quantity");
-        quantityColumn.setMinWidth(75);
-        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        //TableColumn<Product, String> quantityColumn = new TableColumn<>("Quantity");
+        //quantityColumn.setMinWidth(75);
+        //quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
         bookTable = new TableView<>();
         bookTable.setItems(handler.getProduct());
-        bookTable.getColumns().addAll(nameColumn, priceColumn, quantityColumn);
+        bookTable.getColumns().addAll(nameColumn, priceColumn);
 
         Button delete = new Button("Delete");
         Button back = new Button("Back");
         Button add = new Button("Add");
         add.setOnAction((ActionEvent e) ->{
-            handler.addBook(addTitle.getText(),Double.parseDouble(addPrice.getText()),Integer.parseInt(addQuantity.getText()));
+            handler.addBook(addTitle.getText(),Double.parseDouble(addPrice.getText()), 1);
             addTitle.clear();
             addPrice.clear();
             addQuantity.clear();
@@ -267,10 +267,10 @@ public class GUI extends Application {
         HBox hBox = new HBox();
         //hBox.setPadding(new Insets(10,10,10,10));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll(addTitle, addPrice, addQuantity, add);
+        hBox.getChildren().addAll(addTitle, addPrice, add);
         
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(bookTable, delete, back, hBox);
+        vBox.getChildren().addAll(bookTable, hBox, delete, back);
         vBox.setPadding(new Insets(35, 35, 35, 35));
         vBox.setSpacing(10);
 
@@ -311,19 +311,19 @@ public class GUI extends Application {
         addPoints.setPromptText("Points");
         addPoints.setMinWidth(40);
         
-        //Title Column
+        //Username Column
         TableColumn<Customer, String> usernameColumn = new TableColumn<>("Username");
         usernameColumn.setMinWidth(200);
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
 
-        //Price Column
+        //Password Column
         TableColumn<Customer, String> passwordColumn = new TableColumn<>("Password");
-        passwordColumn.setMinWidth(100);
+        passwordColumn.setMinWidth(200);
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
 
-        //Quantity Column
-        TableColumn<Customer, String> pointsColumn = new TableColumn<>("points");
-        pointsColumn.setMinWidth(75);
+        //Points Column
+        TableColumn<Customer, String> pointsColumn = new TableColumn<>("Points");
+        pointsColumn.setMinWidth(100);
         pointsColumn.setCellValueFactory(new PropertyValueFactory<>("points"));
 
         custTable = new TableView<>();
@@ -334,7 +334,7 @@ public class GUI extends Application {
         Button back = new Button("Back");
         Button add = new Button("Add");
         add.setOnAction((ActionEvent e) ->{
-            handler.addCustomer(addUsername.getText(),addPassword.getText(),Integer.parseInt(addPoints.getText()));
+            handler.addCustomer(addUsername.getText(),addPassword.getText(), 0);
             addUsername.clear();
             addPassword.clear();
             addPoints.clear();
@@ -353,16 +353,15 @@ public class GUI extends Application {
                 Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
            custSelected.forEach(handler.customers::remove);
-            
+           
         });   
 
         HBox hBox = new HBox();
-        //hBox.setPadding(new Insets(10,10,10,10));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll(addUsername, addPassword, addPoints, add);
+        hBox.getChildren().addAll(addUsername, addPassword, add);
         
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(custTable, delete, back, hBox);
+        vBox.getChildren().addAll(custTable, hBox, delete, back);
         vBox.setPadding(new Insets(35, 35, 35, 35));
         vBox.setSpacing(10);
 
@@ -371,7 +370,6 @@ public class GUI extends Application {
         primaryStage.show();
     }
 
-    
     public void customerCostScreen(Stage primaryStage, Handler a){
 
         Text transactionCost = new Text("Transaction cost: ");

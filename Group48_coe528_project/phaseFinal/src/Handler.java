@@ -17,7 +17,6 @@ public class Handler {
     public Customer c1;
     public ObservableList<Product> product = FXCollections.observableArrayList();
     public ObservableList<Customer> customers = FXCollections.observableArrayList();
-
     
     public boolean verify(String user, String pw) {
         boolean verification;
@@ -166,7 +165,6 @@ public class Handler {
                 points = Double.parseDouble(info[2]);
                 
                 customers.add(new Customer(username, password, points));
-                
                 // read next line
                 line = reader.readLine();
             }
