@@ -91,6 +91,17 @@ public class Handler {
         }
     }
     
+    public double purchaseBook(Product book) throws IOException
+    {
+        double total;
+        total = book.getPrice();
+        deleteBook(book);
+        
+        return total;
+    }
+    
+    
+    
     public void deleteBook(Product book) throws FileNotFoundException, IOException{
         File inputFile = new File("books.txt");
         File tempFile = new File("myTempFile.txt");

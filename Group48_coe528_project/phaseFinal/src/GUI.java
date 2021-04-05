@@ -39,6 +39,7 @@ public class GUI extends Application {
     TextField addTitle, addPrice, addQuantity, addUsername, addPassword, addPoints;
     public ObservableList<Product> productSelected;
     public ObservableList<Customer> custSelected;
+
     
     
     @Override
@@ -150,7 +151,6 @@ public class GUI extends Application {
     //Rania & Manav
     public void customerWindow(Stage primaryStage, Handler a){
         
-        
         Handler handler = new Handler();
         String status;
         Text scenetitle = new Text("Welcome, " + ". You have " + " points. Your status is " );
@@ -174,12 +174,12 @@ public class GUI extends Application {
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
         //Select Column
-        TableColumn<Product, CheckBox> selectColumn = new TableColumn("Select");
-        selectColumn.setMinWidth(50);
-        selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
-        bookTable = new TableView<>();
-        bookTable.setItems(handler.getProduct());
-        bookTable.getColumns().addAll(nameColumn, priceColumn, quantityColumn, selectColumn);
+      //  TableColumn<Product, CheckBox> selectColumn = new TableColumn("Select");
+       // selectColumn.setMinWidth(50);
+     //   selectColumn.setCellValueFactory(new PropertyValueFactory<>("select"));
+       
+     
+        
 
         Button buy = new Button("Buy");
         Button rNBuy = new Button("Redeem & Buy");
@@ -192,12 +192,31 @@ public class GUI extends Application {
         customerPane.setVgap(10);
         customerPane.setPadding(new Insets(25, 25, 25, 25));
 
+        bookTable = new TableView<>();
+        bookTable.setItems(handler.getProduct());
+        bookTable.getColumns().addAll(nameColumn, priceColumn, quantityColumn);
         buy.setOnAction((ActionEvent e)->{
-           customerCostScreen(primaryStage, handler);
+          
+            
+            productSelected = bookTable.getSelectionModel().getSelectedItems();
+            
+            
+            try {
+                customerCostScreen(primaryStage, handler, handler.purchaseBook(productSelected.get(0)));
+            } catch (IOException ex) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+           
+           
         });
         
         rNBuy.setOnAction((ActionEvent e)->{
-           customerCostScreen(primaryStage, handler);
+            try {
+                customerCostScreen(primaryStage, handler, handler.purchaseBook(productSelected.get(0)) );
+            } catch (IOException ex) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
        
         logout.setOnAction((ActionEvent e) -> {
@@ -372,11 +391,11 @@ public class GUI extends Application {
         primaryStage.show();
     }
 
-    public void customerCostScreen(Stage primaryStage, Handler a){
+    public void customerCostScreen(Stage primaryStage, Handler a, double total){
 
         
         
-        Text transactionCost = new Text("Transaction cost: ");
+        Text transactionCost = new Text("Transaction cost: " + total);
         transactionCost.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         Text pointStatus = new Text("Points: " + ", Status: " );
         pointStatus.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
