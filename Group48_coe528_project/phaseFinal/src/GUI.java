@@ -153,7 +153,7 @@ public class GUI extends Application {
         
         Handler handler = new Handler();
         String status;
-        Text scenetitle = new Text("Welcome, " + ". You have " + " points. Your status is " );
+        Text scenetitle = new Text("Welcome");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         
         TableView<Product> bookTable;
