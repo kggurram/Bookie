@@ -8,8 +8,9 @@ Admin usage of the app:
 
 Admin can login with admin/admin credentials. This presents a screen welcoming the admin and some options. Depending on the option selected the admin has the power to add or delete a selected book as well as add or delete a selected customer. Of course he is given the option to go back to the previous screen or log out as well.
 
-![Alt text](pictures/admin-login.PNG "Admin Login")
-
+<p align="center">
+  <img src="https://github.com/kggurram/COE528-Project/blob/main/pictures/admin-login.PNG" />
+</p>
 
 
 Customer usage of the app:
