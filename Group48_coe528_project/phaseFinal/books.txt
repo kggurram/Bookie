@@ -1,7 +1,4 @@
-Harry Potter and the Philosopher's Stone, 9.49, 1
-Java 7th Edition, 150.99, 1
-The Hobbit, 12.99, 1
-Dr. Seuss, 5.00, 1
-Geronimo Stilton #18, 1
+Dr. Suess, 5.00, 1
+Geronimo Stilton #18, 9.99, 1
 Charlotte's Web, 11.99, 1
 Great Gatsby, 13.99, 1

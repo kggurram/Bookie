@@ -2,23 +2,19 @@
 
 A bookstore application implemented using JavaFX amongst others.
 
-## Working
+## Use Cases
 
-(i) Owner's usage of the app:    
+Admin usage of the app:    
 
-    [WORKING] add a book
+Admin can login with admin/admin credentials. This presents a screen welcoming the admin and some options. Depending on the option selected the admin has the power to add or delete a selected book as well as add or delete a selected customer. Of course he is given the option to go back to the previous screen or log out as well.
 
-    [WORKING] delete a selected book
+![Alt text](pictures/admin-login.PNG "Admin Login")
 
-    [WORKING] add a customer
 
-    [WORKING] delete a selected customer
 
-    [WORKING] [Logout] button
+Customer usage of the app:
 
-    [WORKING] [Back] button
-
-(ii) Customer's usage of the app:
+A customer can only login with existing credentials; they would have to register with the admin beforehand (ie. not required, therefore not implemented). Once logged in, the customer can see 
 
     [WORKS ONLY FOR 1 SELECTION AT A TIME] [Buy] button works
 
