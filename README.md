@@ -4,7 +4,7 @@ A bookstore application implemented using JavaFX amongst others.
 
 ## Application
 
-**Admin usage of the app:**    
+***Admin usage of the app:***    
 
 Admin can login with admin/admin credentials. This presents a screen welcoming the admin and some options. Depending on the option selected the admin has the power to add or delete a selected book as well as add or delete a selected customer. Of course he is given the option to go back to the previous screen or log out as well.
 
@@ -16,7 +16,7 @@ Admin can login with admin/admin credentials. This presents a screen welcoming t
 </p>
 
 
-**Customer usage of the app:**
+***Customer usage of the app:***
 
 A customer can only login with existing credentials; they would have to register with the admin beforehand (ie. not required, therefore not implemented). Once logged in, the customer can see a table of books from which they can select to buy, and of course they can log out whenever they wish.
 
@@ -24,7 +24,7 @@ A customer can only login with existing credentials; they would have to register
   <img src="https://github.com/kggurram/COE528-Project/blob/main/pictures/customer-screen.PNG" />
 </p>
 
-**Closing the application and on re-run:**
+***Closing the application and on re-run:***
 
 The application saves info to two files: books.txt and customers.txt depending upon the info in the book table and customer table. These files are also used to load in the information for the application as well.
 
