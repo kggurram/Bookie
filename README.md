@@ -1,4 +1,5 @@
-# Bookie - a COE528 Project
+# Bookie
+> COE528 (Object Oriented Design) Project
 
 A bookstore application implemented using JavaFX amongst others, for the group project assigned in *COE528 - Object Oriented Design*.
 
